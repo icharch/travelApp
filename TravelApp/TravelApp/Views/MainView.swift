@@ -102,6 +102,23 @@ private extension MainView {
             ScrollView(.horizontal) {
                 HStack {
                     ZStack {
+                        Image("hawai")
+                            .resizable()
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(15)
+                            .scaledToFill()
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Text("Hawai'i")
+                                    .font(.custom("Quicksand-Bold", size: 18))
+                                    .foregroundColor(.white)
+                                Spacer()
+                            }
+                            .padding()
+                        }
+                    }
+                    ZStack {
                         Image("kauai")
                             .resizable()
                             .frame(width: 150, height: 200)
@@ -137,15 +154,10 @@ private extension MainView {
                         }
                     }
                         
-                    
-
-
                 }
-                
-       //         .frame(width: 200, height: 200)
-     
             }
             .padding(.leading)
+            .scrollIndicators(.hidden)
         }
 
 

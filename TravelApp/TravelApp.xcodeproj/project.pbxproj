@@ -19,6 +19,7 @@
 		B81B060229F47B5800E530B3 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = B81B05FA29F47B5800E530B3 /* OFL.txt */; };
 		B81B060329F47B5800E530B3 /* Quicksand-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B81B05FB29F47B5800E530B3 /* Quicksand-VariableFont_wght.ttf */; };
 		B81B060429F47B5800E530B3 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = B81B05FC29F47B5800E530B3 /* README.txt */; };
+		B81B060929F4867F00E530B3 /* PopularLocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81B060829F4867E00E530B3 /* PopularLocationsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B81B05FA29F47B5800E530B3 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
 		B81B05FB29F47B5800E530B3 /* Quicksand-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		B81B05FC29F47B5800E530B3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		B81B060829F4867E00E530B3 /* PopularLocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			children = (
 				B81B05F029F4780D00E530B3 /* Info.plist */,
 				B81B05DA29F4609000E530B3 /* TravelAppApp.swift */,
+				B81B060729F4865E00E530B3 /* ViewModel */,
 				B81B060629F4825100E530B3 /* Model */,
 				B81B060529F4823B00E530B3 /* Views */,
 				B81B05EA29F4779700E530B3 /* Fonts */,
@@ -129,8 +132,16 @@
 		B81B060629F4825100E530B3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B81B060829F4867E00E530B3 /* PopularLocationsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B81B060729F4865E00E530B3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 			files = (
 				B81B05E929F468DC00E530B3 /* MainView.swift in Sources */,
 				B81B05DB29F4609000E530B3 /* TravelAppApp.swift in Sources */,
+				B81B060929F4867F00E530B3 /* PopularLocationsModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
