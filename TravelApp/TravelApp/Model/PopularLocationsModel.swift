@@ -7,6 +7,15 @@
 
 import Foundation
 
-let popularLocationNames = ["Hawai'i", "Kauai", "Maui", "O'ahu", "Lanai", "Moloka'i", "Ni'ihau", "Kaho'olawe"]
 
-let popularLocationImages = ["hawai", "kauai", "maui", "oahu", "lanai", "molokai", "niihau", "kahoolawe"]
+struct PopularLocationModel: Identifiable, Hashable {
+    let id = UUID()
+    let name: String
+    let image: String
+    
+    init(name: String, image: String) {
+        self.name = name
+        self.image = image
+    }
+}
+

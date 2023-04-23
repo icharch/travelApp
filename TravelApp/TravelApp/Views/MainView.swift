@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
-        
+   
+    @ObservedObject var popularLocationsViewModel: PopularLocationsViewModel
+
+
     var body: some View {
+        
         ScrollView {
             VStack(spacing: 20) {
                 mainImage
                 circleButtons
                 popularLocations
+            }
+            .onAppear {
+                popularLocationsViewModel.fetchData()
             }
         }
         .ignoresSafeArea()
@@ -23,7 +30,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(popularLocationsViewModel: .init(locationService: .init()))
     }
 }
 
@@ -101,58 +108,63 @@ private extension MainView {
             
             ScrollView(.horizontal) {
                 HStack {
-                    ZStack {
-                        Image("hawai")
-                            .resizable()
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(15)
-                            .scaledToFill()
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Text("Hawai'i")
-                                    .font(.custom("Quicksand-Bold", size: 18))
-                                    .foregroundColor(.white)
+                    ForEach(popularLocationsViewModel.popularLocations, id: \.id) {
+                        randomLocation in
+                        ZStack {
+                            Image("\(randomLocation.image)")
+                                .resizable()
+                                .frame(width: 150, height: 200)
+                                .cornerRadius(15)
+                                .scaledToFill()
+                            VStack {
                                 Spacer()
+                                HStack {
+                                    Text(randomLocation.name)
+                                        .font(.custom("Quicksand-Bold", size: 18))
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                }
+                                .padding()
                             }
-                            .padding()
-                        }
-                    }
-                    ZStack {
-                        Image("kauai")
-                            .resizable()
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(15)
-                            .scaledToFill()
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Text("Kauai")
-                                    .font(.custom("Quicksand-Bold", size: 18))
-                                    .foregroundColor(.white)
-                                Spacer()
-                            }
-                            .padding()
                         }
                     }
                     
-                    ZStack {
-                        Image("maui")
-                            .resizable()
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(15)
-                            .scaledToFill()
-                        VStack {
-                            Spacer()
-                            HStack {
-                                Text("Maui")
-                                    .font(.custom("Quicksand-Bold", size: 18))
-                                    .foregroundColor(.white)
-                                Spacer()
-                            }
-                            .padding()
-                        }
-                    }
+
+//                    ZStack {
+//                        Image("kauai")
+//                            .resizable()
+//                            .frame(width: 150, height: 200)
+//                            .cornerRadius(15)
+//                            .scaledToFill()
+//                        VStack {
+//                            Spacer()
+//                            HStack {
+//                                Text("Kauai")
+//                                    .font(.custom("Quicksand-Bold", size: 18))
+//                                    .foregroundColor(.white)
+//                                Spacer()
+//                            }
+//                            .padding()
+//                        }
+//                    }
+//
+//                    ZStack {
+//                        Image("maui")
+//                            .resizable()
+//                            .frame(width: 150, height: 200)
+//                            .cornerRadius(15)
+//                            .scaledToFill()
+//                        VStack {
+//                            Spacer()
+//                            HStack {
+//                                Text("Maui")
+//                                    .font(.custom("Quicksand-Bold", size: 18))
+//                                    .foregroundColor(.white)
+//                                Spacer()
+//                            }
+//                            .padding()
+//                        }
+//                    }
                         
                 }
             }
