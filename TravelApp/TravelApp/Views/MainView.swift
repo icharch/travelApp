@@ -11,8 +11,10 @@ struct MainView: View {
    
     @ObservedObject var popularLocationsViewModel: PopularLocationsViewModel
     @State var searchLocation = ""
+    @State var tabBar = TabBarView()
 
     var body: some View {
+
             ScrollView {
                     VStack(spacing: 25) {
                         ZStack {
@@ -29,9 +31,9 @@ struct MainView: View {
                     .onAppear {
                         popularLocationsViewModel.fetchData()
                     }
-                
             }
             .ignoresSafeArea()
+            
     }
 }
 
@@ -42,24 +44,6 @@ struct MainView_Previews: PreviewProvider {
 }
 
 private extension MainView {
-    
-    var tabView: some View {
-        TabView {
-            Text("Home")
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            Text("Discovery")
-                .tabItem {
-                    Label("Discovery", systemImage: "mappin.and.ellipse")
-                }
-            Text("Account")
-                .tabItem {
-                    Label("Account", systemImage: "person")
-                }
-        }
-        .accentColor(.red)
-    }
     
     var searchText: some View {
         HStack {

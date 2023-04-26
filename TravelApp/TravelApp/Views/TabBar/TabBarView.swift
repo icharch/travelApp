@@ -14,13 +14,14 @@ struct TabBarView: View {
     
     var body: some View {
         CustomTabBarContainerView(selection: $tabSelection) {
+            
             MainView(popularLocationsViewModel: PopularLocationsViewModel(locationService: .init()))
                 .tabBarItem(tab: .home, selection: $tabSelection)
             
-            Text("Discovery")
+            Color.green.ignoresSafeArea()
                 .tabBarItem(tab: .discovery, selection: $tabSelection)
             
-            Text("Account")
+            SignInView()
                 .tabBarItem(tab: .account, selection: $tabSelection)
         }
     }

@@ -28,6 +28,9 @@
 		B860EF1129F8572600D8E581 /* CustomTabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B860EF1029F8572600D8E581 /* CustomTabBarContainerView.swift */; };
 		B860EF1329F85BFE00D8E581 /* TabBarItemsPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B860EF1229F85BFE00D8E581 /* TabBarItemsPreferenceKey.swift */; };
 		B8D0FC2B29F908C60067041B /* TabBarItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0FC2A29F908C60067041B /* TabBarItemModel.swift */; };
+		B8D0FC2D29F9317B0067041B /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0FC2C29F9317B0067041B /* SignInView.swift */; };
+		B8D0FC2F29F960C00067041B /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0FC2E29F960BF0067041B /* ForgotPasswordView.swift */; };
+		B8D0FC3129F97A9B0067041B /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D0FC3029F97A9B0067041B /* SignUpView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		B860EF1029F8572600D8E581 /* CustomTabBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainerView.swift; sourceTree = "<group>"; };
 		B860EF1229F85BFE00D8E581 /* TabBarItemsPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemsPreferenceKey.swift; sourceTree = "<group>"; };
 		B8D0FC2A29F908C60067041B /* TabBarItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItemModel.swift; sourceTree = "<group>"; };
+		B8D0FC2C29F9317B0067041B /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		B8D0FC2E29F960BF0067041B /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		B8D0FC3029F97A9B0067041B /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,9 @@
 			isa = PBXGroup;
 			children = (
 				B81B05E829F468DC00E530B3 /* MainView.swift */,
+				B8D0FC2C29F9317B0067041B /* SignInView.swift */,
+				B8D0FC3029F97A9B0067041B /* SignUpView.swift */,
+				B8D0FC2E29F960BF0067041B /* ForgotPasswordView.swift */,
 				B860EF0F29F8543900D8E581 /* TabBar */,
 			);
 			path = Views;
@@ -268,8 +277,11 @@
 				B860EF0E29F7FA5300D8E581 /* TabBarView.swift in Sources */,
 				B81B05DB29F4609000E530B3 /* TravelAppApp.swift in Sources */,
 				B860EF0C29F7E5A300D8E581 /* CustomTabBarView.swift in Sources */,
+				B8D0FC2D29F9317B0067041B /* SignInView.swift in Sources */,
 				B860EF0429F5457E00D8E581 /* LocationService.swift in Sources */,
+				B8D0FC2F29F960C00067041B /* ForgotPasswordView.swift in Sources */,
 				B860EF0629F5465F00D8E581 /* PopularLocationsViewModel.swift in Sources */,
+				B8D0FC3129F97A9B0067041B /* SignUpView.swift in Sources */,
 				B81B060929F4867F00E530B3 /* PopularLocationsModel.swift in Sources */,
 				B860EF0829F6DA7B00D8E581 /* RecentLocationsModel.swift in Sources */,
 				B860EF1129F8572600D8E581 /* CustomTabBarContainerView.swift in Sources */,

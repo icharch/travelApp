@@ -12,7 +12,6 @@ struct TravelAppApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
-           // MainView(popularLocationsViewModel: .init(locationService: .init()))
         }
     }
 }
