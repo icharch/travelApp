@@ -11,7 +11,8 @@ import SwiftUI
 struct TravelAppApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView(popularLocationsViewModel: .init(locationService: .init()))
+            TabBarView()
+           // MainView(popularLocationsViewModel: .init(locationService: .init()))
         }
     }
 }

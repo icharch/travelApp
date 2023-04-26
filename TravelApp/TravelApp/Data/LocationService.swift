@@ -20,4 +20,15 @@ class LocationService {
         PopularLocationModel(name: "Kaho'olawe", image: "kahoolawe")
         ]
     }
+    
+    func getRecentLocations() -> [RecentLocationsModel] {
+        return [
+            RecentLocationsModel(name: "Maui Coffee Roasters", image: "maui coffee", cuisine: "Coffeehouse", starRate: 3.2, rate: "3.2"),
+            RecentLocationsModel(name: "Cafe Pesto Hilo Bay", image: "cafe pesto", cuisine: "Italian", starRate: 5.0, rate: "5.0"),
+            RecentLocationsModel(name: "Porky's Kauai", image: "porky-s-kauai", cuisine: "American", starRate: 4.7, rate: "4.7"),
+            RecentLocationsModel(name: "Tommy Bahama Marlin Bar & Store", image: "tommy bahama", cuisine: "Seafood", starRate: 4.1, rate: "4.1"),
+            RecentLocationsModel(name: "STRIPSTEAK Waikiki", image: "stripsteak", cuisine: "Steakhouse", starRate: 3.9, rate: "3.9"),
+            RecentLocationsModel(name: "Over Easy", image: "overeasy", cuisine: "Mediterranean", starRate: 2.8, rate: "2.8")
+        ]
+    }
 }

@@ -16,11 +16,12 @@ class PopularLocationsViewModel: ObservableObject {
     }
     
     @Published var popularLocations: [PopularLocationModel]  = []
+    @Published var recentLocations: [RecentLocationsModel] = []
     
     func fetchData() {
         popularLocations = locationService.getPopularLocations()
+        recentLocations = locationService.getRecentLocations()
     }
-    
     
     
 }
