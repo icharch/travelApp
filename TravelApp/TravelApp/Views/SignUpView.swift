@@ -13,6 +13,7 @@ struct SignUpView: View {
     @State var password: String = ""
     @State var isSecured: Bool = true
     @State var email: String = ""
+    @FocusState private var isEditing: Bool
     
     var body: some View {
         NavigationView {
@@ -62,8 +63,10 @@ private extension SignUpView {
                 .background(
                     Color("SecondColor")
                         .cornerRadius(15)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                        .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
                 )
+                .focused($isEditing)
+            
             HStack {
                 if isSecured == true {
                     SecureField("Password", text: $password)
@@ -83,16 +86,19 @@ private extension SignUpView {
             .background(
                 Color("SecondColor")
                     .cornerRadius(15)
-                    .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                    .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
             )
+            .focused($isEditing)
+            
             TextField("Email", text: $email)
                 .font(.custom("Quicksand-Regular", size: 16))
                 .padding()
                 .background(
                     Color("SecondColor")
                         .cornerRadius(15)
-                        .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                        .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
                 )
+                .focused($isEditing)
         }
         .padding()
     }

@@ -12,7 +12,7 @@ struct SignInView: View {
     @State var account: String = ""
     @State var password: String = ""
     @State var isSecured: Bool = true
-    @State var isSelected: Bool = false
+    @FocusState private var isEditing: Bool
 
     var body: some View {
         NavigationView {
@@ -56,39 +56,48 @@ private extension SignInView {
         .padding()
     }
     
+    var accountTextField: some View {
+        TextField("Account", text: $account)
+            .font(.custom("Quicksand-Regular", size: 16))
+            .padding()
+            .background(
+                Color("SecondColor")
+                    .cornerRadius(15)
+                    .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
+            )
+            .focused($isEditing)
+    }
+    
+    var passwordTextField: some View {
+        HStack {
+            if isSecured == true {
+                SecureField("Password", text: $password)
+                    .font(.custom("Quicksand-Regular", size: 16))
+            } else {
+                TextField("Password", text: $password)
+                    .font(.custom("Quicksand-Regular", size: 16))
+            }
+            Button {
+                isSecured.toggle()
+            } label: {
+                Image(systemName: isSecured ? "eye.slash" : "eye")
+                    .foregroundColor(.secondary)
+            }
+        }
+        .focused($isEditing)
+        .padding()
+        .background(
+            Color("SecondColor")
+                .cornerRadius(15)
+                .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
+        )
+    }
+    
     var logInTextFields: some View {
         
         VStack(spacing: 20) {
-            TextField("Account", text: $account)
-                .font(.custom("Quicksand-Regular", size: 16))
-                .padding()
-                .background(
-                        Color("SecondColor")
-                        .cornerRadius(15)
-                        .shadow(color: isSelected ? .orange : .gray, radius: 2, x: 0, y: 2)
-                    )
-
-            HStack {
-                if isSecured == true {
-                    SecureField("Password", text: $password)
-                        .font(.custom("Quicksand-Regular", size: 16))
-                } else {
-                    TextField("Password", text: $password)
-                        .font(.custom("Quicksand-Regular", size: 16))
-                }
-                Button {
-                    isSecured.toggle()
-                } label: {
-                    Image(systemName: isSecured ? "eye.slash" : "eye")
-                        .foregroundColor(.secondary)
-                }
-            }
-            .padding()
-            .background(
-                    Color("SecondColor")
-                    .cornerRadius(15)
-                    .shadow(color: isSelected ? .orange : .gray, radius: 2, x: 0, y: 2)
-                    )
+            accountTextField
+            passwordTextField
         }
         .padding()
     }
@@ -123,7 +132,6 @@ private extension SignInView {
                 )
                 .padding()
         }
-
     }
 }
 

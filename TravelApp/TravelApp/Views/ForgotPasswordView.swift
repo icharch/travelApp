@@ -10,6 +10,7 @@ import SwiftUI
 struct ForgotPasswordView: View {
     
     @State var email: String = ""
+    @FocusState private var isEditing: Bool
     
     var body: some View {
         VStack {
@@ -48,8 +49,10 @@ private extension ForgotPasswordView {
             .background(
                     Color("SecondColor")
                     .cornerRadius(15)
-                    .shadow(color: .gray, radius: 2, x: 0, y: 2)
-                )
+                    .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
+            )
             .padding()
+            .focused($isEditing)
+
     }
 }
