@@ -13,6 +13,10 @@ struct SignInView: View {
     @State var password: String = ""
     @State var isSecured: Bool = true
     @FocusState private var isEditing: Bool
+    @FocusState private var isTyping: Bool
+    @State private var accountTextFieldError: TextFieldError?
+    @State private var passwordTextFieldError: TextFieldError?
+    
 
     var body: some View {
         NavigationView {
@@ -56,45 +60,82 @@ private extension SignInView {
         .padding()
     }
     
+    enum TextFieldError {
+        case tooShort
+        
+        var description: String {
+            switch self {
+            case .tooShort:
+              return "Value is too short"
+            }
+        }
+    }
+    
     var accountTextField: some View {
-        TextField("Account", text: $account)
-            .font(.custom("Quicksand-Regular", size: 16))
+        VStack {
+            TextField("Account", text: $account)
+                .font(.custom("Quicksand-Regular", size: 16))
+                .padding()
+                .background(
+                    Color("SecondColor")
+                        .cornerRadius(15)
+                        .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
+                )
+                .focused($isEditing)
+                .autocorrectionDisabled()
+                .textInputAutocapitalization(.never)
+            
+            if let error = accountTextFieldError {
+                HStack {
+                    Text(error.description)
+                        .font(.custom("Quicksand-Medium", size: 10))
+                        .foregroundColor(.red)
+                        .onAppear(perform: nil)
+                    Spacer()
+                }
+            }
+        }
+    }
+    
+    var passwordTextField: some View {
+        VStack {
+            HStack {
+                if isSecured == true {
+                    SecureField("Password", text: $password)
+                        .font(.custom("Quicksand-Regular", size: 16))
+                } else {
+                    TextField("Password", text: $password)
+                        .font(.custom("Quicksand-Regular", size: 16))
+                }
+                Button {
+                    isSecured.toggle()
+                } label: {
+                    Image(systemName: isSecured ? "eye.slash" : "eye")
+                        .foregroundColor(.secondary)
+                }
+            }
+            .focused($isTyping)
+            .autocorrectionDisabled()
+            .textInputAutocapitalization(.never)
             .padding()
             .background(
                 Color("SecondColor")
                     .cornerRadius(15)
-                    .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
+                    .shadow(color: isTyping ? .orange : .gray, radius: 2, x: 0, y: 2)
             )
-            .focused($isEditing)
-    }
-    
-    var passwordTextField: some View {
-        HStack {
-            if isSecured == true {
-                SecureField("Password", text: $password)
-                    .font(.custom("Quicksand-Regular", size: 16))
-            } else {
-                TextField("Password", text: $password)
-                    .font(.custom("Quicksand-Regular", size: 16))
-            }
-            Button {
-                isSecured.toggle()
-            } label: {
-                Image(systemName: isSecured ? "eye.slash" : "eye")
-                    .foregroundColor(.secondary)
+            if let error = passwordTextFieldError?.description {
+                HStack {
+                    Text(error.description)
+                        .font(.custom("Quicksand-Medium", size: 10))
+                        .foregroundColor(.red)
+                        .onAppear(perform: nil)
+                    Spacer()
+                }
             }
         }
-        .focused($isEditing)
-        .padding()
-        .background(
-            Color("SecondColor")
-                .cornerRadius(15)
-                .shadow(color: isEditing ? .orange : .gray, radius: 2, x: 0, y: 2)
-        )
     }
     
     var logInTextFields: some View {
-        
         VStack(spacing: 20) {
             accountTextField
             passwordTextField
@@ -117,9 +158,21 @@ private extension SignInView {
         .padding(.horizontal)
     }
     
+    var signInCredentialsAreValid: Bool {
+        return !account.isEmpty || !password.isEmpty
+    }
+    var signInButtonColor: Color {
+        return signInCredentialsAreValid ? .orange : .gray
+    }
+    
     var signInButton: some View {
         Button {
-            //
+            if account.count < 4 {
+                accountTextFieldError = .tooShort
+            }
+            if password.count < 6 {
+                passwordTextFieldError = .tooShort
+            }
         } label: {
             Text("Sign In")
                 .font(.custom("Quicksand-Bold", size: 16))
@@ -127,11 +180,13 @@ private extension SignInView {
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(
-                    Color.orange
+                    signInButtonColor
                         .cornerRadius(15)
                 )
+            
                 .padding()
         }
+        .disabled(!signInCredentialsAreValid)
     }
 }
 
