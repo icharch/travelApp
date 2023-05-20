@@ -15,7 +15,7 @@ struct TabBarView: View {
     var body: some View {
         CustomTabBarContainerView(selection: $tabSelection) {
             
-            HomeView(popularLocationsViewModel: PopularLocationsViewModel(locationService: .init()))
+            HomeView(popularLocationsViewModel: PopularLocationsViewModel(locationService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/kahoolawe.jpg?alt=media&token=a2142070-3e8b-4792-9f5b-71bc08ee80b5"))
                 .tabBarItem(tab: .home, selection: $tabSelection)
             
             DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init()), eventsViewModel: .init(eventService: .init()), restaurantsViewModel: .init(restaurantService: .init()), shopsViewModel: .init(shopService: .init()))

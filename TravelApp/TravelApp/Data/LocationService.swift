@@ -6,19 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class LocationService {
-    func getPopularLocations() -> [PopularLocationModel] {
-        return [
-        PopularLocationModel(name: "Hawai'i", image: "hawai"),
-        PopularLocationModel(name: "Kauai", image: "kauai"),
-        PopularLocationModel(name: "Maui", image: "maui"),
-        PopularLocationModel(name: "O'ahu", image: "oahu"),
-        PopularLocationModel(name: "Lanai", image: "lanai"),
-        PopularLocationModel(name: "Moloka'i", image: "molokai"),
-        PopularLocationModel(name: "Ni'ihau", image: "niihau"),
-        PopularLocationModel(name: "Kaho'olawe", image: "kahoolawe")
-        ]
+    private var databaseReference = Firestore.firestore()
+
+    func getPopularLocations() async throws -> [PopularLocationModel] {
+        let snapshot = try await databaseReference.collection("locations").getDocuments()
+        return snapshot.documents.compactMap { try? $0.data(as: PopularLocationModel.self) }
     }
     
     func getRecentLocations() -> [RecentLocationsModel] {

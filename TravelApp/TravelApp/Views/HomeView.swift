@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct HomeView: View {
    
@@ -25,12 +26,22 @@ struct HomeView: View {
                             }
                         }
                         circleButtons
-                        popularLocations
+                        if popularLocationsViewModel.isLoading {
+                            ZStack {
+                                Color(.white)
+                                    .opacity(0.3)
+                                    .ignoresSafeArea()
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                            }
+                        } else {
+                            popularLocations
+                        }
                         recentLocations
                         blankText
                     }
-                    .onAppear {
-                        popularLocationsViewModel.fetchData()
+                    .task {
+                        await popularLocationsViewModel.fetchData()
                     }
             }
             .ignoresSafeArea()
@@ -40,7 +51,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(popularLocationsViewModel: .init(locationService: .init()))
+        HomeView(popularLocationsViewModel: .init(locationService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/kahoolawe.jpg?alt=media&token=a2142070-3e8b-4792-9f5b-71bc08ee80b5"))
     }
 }
 
@@ -138,7 +149,7 @@ private extension HomeView {
                     ForEach(popularLocationsViewModel.popularLocations, id: \.id) {
                         randomLocation in
                         ZStack {
-                            Image("\(randomLocation.image)")
+                            WebImage(url: URL(string: randomLocation.image))
                                 .resizable()
                                 .frame(width: 150, height: 200)
                                 .cornerRadius(15)
