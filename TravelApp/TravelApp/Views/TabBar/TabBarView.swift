@@ -15,10 +15,10 @@ struct TabBarView: View {
     var body: some View {
         CustomTabBarContainerView(selection: $tabSelection) {
             
-            MainView(popularLocationsViewModel: PopularLocationsViewModel(locationService: .init()))
+            HomeView(popularLocationsViewModel: PopularLocationsViewModel(locationService: .init()))
                 .tabBarItem(tab: .home, selection: $tabSelection)
             
-            Color.green.ignoresSafeArea()
+            DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init()), eventsViewModel: .init(eventService: .init()), restaurantsViewModel: .init(restaurantService: .init()), shopsViewModel: .init(shopService: .init()))
                 .tabBarItem(tab: .discovery, selection: $tabSelection)
             
             SignInView()

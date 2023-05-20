@@ -22,6 +22,4 @@ class PopularLocationsViewModel: ObservableObject {
         popularLocations = locationService.getPopularLocations()
         recentLocations = locationService.getRecentLocations()
     }
-    
-    
 }
