@@ -10,14 +10,24 @@ import Foundation
 class CarsToRentViewModel: ObservableObject {
     
     private var carsToRentService: CarsToRentService
+    @Published var photoURL: URL?
     
-    init(carsToRentService: CarsToRentService) {
+    init(carsToRentService: CarsToRentService, photoURL: String) {
         self.carsToRentService = carsToRentService
+        self.photoURL = URL(string: photoURL)
     }
     
     @Published var carsToRent: [CarsToRentModel] = []
+    @Published var isLoading: Bool = false
     
-    func fetchCars() {
-        carsToRent = carsToRentService.getCarsToRent()
+    @MainActor
+    func fetchCars() async {
+        isLoading = true
+        do {
+            carsToRent = try await carsToRentService.getCarsToRent()
+            isLoading = false
+        } catch {
+            //todo handle error
+        }
     }
 }

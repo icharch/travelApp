@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct DiscoveryView: View {
     
@@ -21,20 +22,61 @@ struct DiscoveryView: View {
             VStack {
                 searchText
                 eventsSection
-                events
+                if eventsViewModel.isLoading {
+                    ZStack {
+                        Color(.white)
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    }
+                } else {
+                    events
+                }
                 restaurantsSection
-                restaurants
+                if restaurantsViewModel.isLoading {
+                    ZStack {
+                        Color(.white)
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    }
+                } else {
+                    restaurants
+                }
                 shopsSection
-                shops
+                if shopsViewModel.isLoading {
+                    ZStack {
+                        Color(.white)
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    }
+                } else {
+                    shops
+                }
                 carsSection
-                carsToRent
+                if carsToRentViewModel.isLoading {
+                    ZStack {
+                        Color(.white)
+                            .opacity(0.3)
+                            .ignoresSafeArea()
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    }
+                } else {
+                    carsToRent
+                }
                 blankText
             }
-            .onAppear {
-                carsToRentViewModel.fetchCars()
-                eventsViewModel.fetchEvents()
-                restaurantsViewModel.fetchRestaurants()
-                shopsViewModel.fetchShops()
+            .task {
+                await eventsViewModel.fetchEvents()
+                await restaurantsViewModel.fetchRestaurants()
+                await shopsViewModel.fetchShops()
+                await carsToRentViewModel.fetchCars()
+
             }
         }
     }
@@ -42,7 +84,7 @@ struct DiscoveryView: View {
 
 struct DiscoveryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init()), eventsViewModel: .init(eventService: .init()), restaurantsViewModel: .init(restaurantService: .init()), shopsViewModel: .init(shopService: .init()))
+        DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/cars%2Fc1.jpeg?alt=media&token=edcc886f-0f1c-4d80-81ab-e8d7107c7252"), eventsViewModel: .init(eventService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/events%2Fevent1.png?alt=media&token=7dd8f611-0e9b-455f-bb5a-414c5a9d3b24"), restaurantsViewModel: .init(restaurantService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/restaurants%2Fmaui%20coffee.jpg?alt=media&token=95b1b6a2-b4a4-45a3-add1-9b3b12436e43"), shopsViewModel: .init(shopService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/shops%2Fala%20moana.png?alt=media&token=c6149ac7-6e44-4b38-84b0-a27724782e8a"))
     }
 }
 
@@ -104,7 +146,7 @@ private extension DiscoveryView {
                 ForEach(carsToRentViewModel.carsToRent, id: \.id) {
                     randomCar in
                     VStack {
-                        Image(randomCar.image)
+                        WebImage(url: URL(string: randomCar.image))
                             .resizable()
                             .cornerRadius(10)
                             .frame(height: 80)
@@ -190,7 +232,7 @@ private extension DiscoveryView {
             HStack {
                 ForEach(eventsViewModel.events, id: \.id) { randomEvent in
                     ZStack {
-                        Image(randomEvent.image)
+                        WebImage(url: URL(string: randomEvent.image))
                             .resizable()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)
@@ -252,7 +294,7 @@ private extension DiscoveryView {
             HStack {
                 ForEach(restaurantsViewModel.restaurants, id: \.id) { randomRestaurant in
                     ZStack {
-                        Image(randomRestaurant.image)
+                        WebImage(url: URL(string: randomRestaurant.image))
                             .resizable()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)
@@ -314,7 +356,7 @@ private extension DiscoveryView {
             HStack {
                 ForEach(shopsViewModel.shops, id: \.id) { randomShop in
                     ZStack {
-                        Image(randomShop.image)
+                        WebImage(url: URL(string: randomShop.image))
                             .resizable()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)

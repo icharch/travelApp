@@ -6,17 +6,14 @@
 //
 
 import Foundation
-
+import FirebaseFirestore
 
 class EventsService {
-    func getEvents() -> [EventsModel] {
-        return [
-        EventsModel(name: "Turtle Canyon", image: "event3"),
-        EventsModel(name: "LAB", image: "event2"),
-        EventsModel(name: "Pearl Harbor", image: "event4"),
-        EventsModel(name: "Show Cruise", image: "event5"),
-        EventsModel(name: "Summit Sunset", image: "event6"),
-        EventsModel(name: "Jessie Reyez", image: "event1")
-        ]
+    
+    private var databaseReference = Firestore.firestore()
+    
+    func getEvents() async throws -> [EventsModel] {
+        let snapshot = try await databaseReference.collection("events").getDocuments()
+        return snapshot.documents.compactMap { try? $0.data(as: EventsModel.self) }
     }
 }

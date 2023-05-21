@@ -5,7 +5,6 @@
 //  Created by Irmina Charchuta on 23/04/2023.
 //
 
-import FirebaseFirestore
 import Foundation
 
 class PopularLocationsViewModel: ObservableObject {

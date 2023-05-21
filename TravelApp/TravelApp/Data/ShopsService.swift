@@ -6,16 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class ShopsService {
-    func getShops() -> [ShopsModel] {
-        return [
-            ShopsModel(name: "Ala Moana", image: "ala moana"),
-            ShopsModel(name: "Olivia Clare", image: "olivia clare"),
-            ShopsModel(name: "Queens Market", image: "queens' marketplace"),
-            ShopsModel(name: "HIC", image: "HIC"),
-            ShopsModel(name: "Aloha Shirts", image: "aloha shirts"),
-            ShopsModel(name: "Luxury Row", image: "luxury row")
-        ]
+    
+    private var databaseReference = Firestore.firestore()
+
+    func getShops() async throws -> [ShopsModel] {
+        let snapshot = try await databaseReference.collection("shops").getDocuments()
+        return snapshot.documents.compactMap { try? $0.data(as: ShopsModel.self) }
     }
 }

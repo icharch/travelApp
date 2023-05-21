@@ -6,17 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class RestaurantsService {
-    func getRestaurants() -> [RestaurantsModel] {
-        return [
-        RestaurantsModel(name: "Maui Coffee", image: "maui coffee"),
-        RestaurantsModel(name: "Cafe Pesto", image: "cafe pesto"),
-        RestaurantsModel(name: "Tommy Bahama", image: "tommy"),
-        RestaurantsModel(name: "Porky's Kauai", image: "porky-s-kauai"),
-        RestaurantsModel(name: "Crispy Calamari", image: "images-4"),
-        RestaurantsModel(name: "Over Easy", image: "over easy2"),
-        ]
+    private var databaseReference = Firestore.firestore()
+
+    func getRestaurants() async throws -> [RestaurantsModel] {
+        let snapshot = try await databaseReference.collection("restaurants").getDocuments()
+        return snapshot.documents.compactMap { try? $0.data(as: RestaurantsModel.self) }
     }
 }
 
