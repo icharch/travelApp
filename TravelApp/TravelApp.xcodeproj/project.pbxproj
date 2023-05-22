@@ -33,6 +33,9 @@
 		B85218612A190A1F00190C56 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B85218602A190A1F00190C56 /* FirebaseFirestore */; };
 		B85218632A190A1F00190C56 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B85218622A190A1F00190C56 /* FirebaseFirestoreSwift */; };
 		B85218662A19376800190C56 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = B85218652A19376800190C56 /* SDWebImageSwiftUI */; };
+		B85218682A1A813000190C56 /* RestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85218672A1A813000190C56 /* RestaurantsView.swift */; };
+		B852186A2A1A870000190C56 /* ShopsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85218692A1A870000190C56 /* ShopsView.swift */; };
+		B852186C2A1A9B9100190C56 /* CarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B852186B2A1A9B9100190C56 /* CarsView.swift */; };
 		B860EF0429F5457E00D8E581 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B860EF0329F5457E00D8E581 /* LocationService.swift */; };
 		B860EF0629F5465F00D8E581 /* PopularLocationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B860EF0529F5465F00D8E581 /* PopularLocationsViewModel.swift */; };
 		B860EF0829F6DA7B00D8E581 /* RecentLocationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B860EF0729F6DA7B00D8E581 /* RecentLocationsModel.swift */; };
@@ -77,6 +80,9 @@
 		B81B05FC29F47B5800E530B3 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		B81B060829F4867E00E530B3 /* PopularLocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationsModel.swift; sourceTree = "<group>"; };
 		B85218582A19073100190C56 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B85218672A1A813000190C56 /* RestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsView.swift; sourceTree = "<group>"; };
+		B85218692A1A870000190C56 /* ShopsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopsView.swift; sourceTree = "<group>"; };
+		B852186B2A1A9B9100190C56 /* CarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsView.swift; sourceTree = "<group>"; };
 		B860EF0329F5457E00D8E581 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		B860EF0529F5465F00D8E581 /* PopularLocationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularLocationsViewModel.swift; sourceTree = "<group>"; };
 		B860EF0729F6DA7B00D8E581 /* RecentLocationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentLocationsModel.swift; sourceTree = "<group>"; };
@@ -200,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				B81B05E829F468DC00E530B3 /* HomeView.swift */,
+				B85218672A1A813000190C56 /* RestaurantsView.swift */,
+				B852186B2A1A9B9100190C56 /* CarsView.swift */,
+				B85218692A1A870000190C56 /* ShopsView.swift */,
 				B819448D2A0E2B9E00A0C1DB /* EventsView.swift */,
 				B81944902A0E2BD300A0C1DB /* Account Views */,
 				B8AF233D2A042DFB005914F7 /* DiscoveryView.swift */,
@@ -354,7 +363,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B852186A2A1A870000190C56 /* ShopsView.swift in Sources */,
 				B8D0FC2B29F908C60067041B /* TabBarItemModel.swift in Sources */,
+				B852186C2A1A9B9100190C56 /* CarsView.swift in Sources */,
 				B81944882A0CE24E00A0C1DB /* ShopsViewModel.swift in Sources */,
 				B860EF1329F85BFE00D8E581 /* TabBarItemsPreferenceKey.swift in Sources */,
 				B81B05E929F468DC00E530B3 /* HomeView.swift in Sources */,
@@ -362,6 +373,7 @@
 				B8AF233E2A042DFB005914F7 /* DiscoveryView.swift in Sources */,
 				B8AF23482A0CCAB5005914F7 /* EventsViewModel.swift in Sources */,
 				B81B05DB29F4609000E530B3 /* TravelAppApp.swift in Sources */,
+				B85218682A1A813000190C56 /* RestaurantsView.swift in Sources */,
 				B8AF23422A0BAF4D005914F7 /* CarsToRentViewModel.swift in Sources */,
 				B81944822A0CDDCB00A0C1DB /* RestaurantsModel.swift in Sources */,
 				B8AF23402A0BAE20005914F7 /* CarsToRentModel.swift in Sources */,

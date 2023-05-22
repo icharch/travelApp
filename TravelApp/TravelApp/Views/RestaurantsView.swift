@@ -1,13 +1,13 @@
 //
-//  EventsView.swift
+//  RestaurantsView.swift
 //  TravelApp
 //
-//  Created by Irmina Charchuta on 12/05/2023.
+//  Created by Irmina Charchuta on 21/05/2023.
 //
 
 import SwiftUI
 
-struct EventsView: View {
+struct RestaurantsView: View {
     
     @State var enterSearch = ""
     
@@ -16,9 +16,11 @@ struct EventsView: View {
             VStack(spacing: 30) {
                 searchText
                 VStack(spacing: 15) {
-                    activity
-                    concert
-                    sightseeing
+                    american
+                    coffeehouse
+                    italian
+                    mediterranean
+                    seafood
                 }
                 blankText
             }
@@ -26,13 +28,13 @@ struct EventsView: View {
     }
 }
 
-struct EventsView_Previews: PreviewProvider {
+struct RestaurantsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView()
+        RestaurantsView()
     }
 }
 
-private extension EventsView {
+private extension RestaurantsView {
     var searchText: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -50,9 +52,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var activity: some View {
+    var american: some View {
         ZStack {
-            Image("activity")
+            Image("american")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -60,7 +62,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Activity")
+                    Text("American")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -71,9 +73,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var concert: some View {
+    var coffeehouse: some View {
         ZStack {
-            Image("concerts")
+            Image("coffee")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -81,7 +83,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Concert")
+                    Text("Coffeehouse")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -92,9 +94,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var sightseeing: some View {
+    var italian: some View {
         ZStack {
-            Image("sightseeing")
+            Image("italian")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -102,7 +104,49 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Sightseeing")
+                    Text("Italian")
+                        .font(.custom("Quicksand-Bold", size: 22))
+                        .foregroundColor(.white)
+                        .padding()
+                    Spacer()
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    var mediterranean: some View {
+        ZStack {
+            Image("mediterranean")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .cornerRadius(15)
+            VStack {
+                Spacer()
+                HStack {
+                    Text("Mediterranean")
+                        .font(.custom("Quicksand-Bold", size: 22))
+                        .foregroundColor(.white)
+                        .padding()
+                    Spacer()
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    var seafood: some View {
+        ZStack {
+            Image("seafood")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .cornerRadius(15)
+            VStack {
+                Spacer()
+                HStack {
+                    Text("Seafood")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()

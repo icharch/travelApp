@@ -1,13 +1,13 @@
 //
-//  EventsView.swift
+//  CarsView.swift
 //  TravelApp
 //
-//  Created by Irmina Charchuta on 12/05/2023.
+//  Created by Irmina Charchuta on 21/05/2023.
 //
 
 import SwiftUI
 
-struct EventsView: View {
+struct CarsView: View {
     
     @State var enterSearch = ""
     
@@ -16,9 +16,9 @@ struct EventsView: View {
             VStack(spacing: 30) {
                 searchText
                 VStack(spacing: 15) {
-                    activity
-                    concert
-                    sightseeing
+                    convertible
+                    premium
+                    suv
                 }
                 blankText
             }
@@ -26,13 +26,13 @@ struct EventsView: View {
     }
 }
 
-struct EventsView_Previews: PreviewProvider {
+struct CarsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView()
+        CarsView()
     }
 }
 
-private extension EventsView {
+private extension CarsView {
     var searchText: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -50,9 +50,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var activity: some View {
+    var convertible: some View {
         ZStack {
-            Image("activity")
+            Image("convert")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -60,7 +60,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Activity")
+                    Text("Convertible")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -71,9 +71,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var concert: some View {
+    var premium: some View {
         ZStack {
-            Image("concerts")
+            Image("premium su")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -81,7 +81,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Concert")
+                    Text("Premium")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -92,9 +92,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var sightseeing: some View {
+    var suv: some View {
         ZStack {
-            Image("sightseeing")
+            Image("full size su")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -102,7 +102,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Sightseeing")
+                    Text("SUV")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -122,4 +122,5 @@ private extension EventsView {
             Spacer()
         }
     }
+    
 }

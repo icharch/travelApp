@@ -18,65 +18,67 @@ struct DiscoveryView: View {
     
     
     var body: some View {
-        ScrollView {
-            VStack {
-                searchText
-                eventsSection
-                if eventsViewModel.isLoading {
-                    ZStack {
-                        Color(.white)
-                            .opacity(0.3)
-                            .ignoresSafeArea()
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+        NavigationView {
+            ScrollView {
+                VStack {
+                    searchText
+                    eventsSection
+                    if eventsViewModel.isLoading {
+                        ZStack {
+                            Color(.white)
+                                .opacity(0.3)
+                                .ignoresSafeArea()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                        }
+                    } else {
+                        events
                     }
-                } else {
-                    events
-                }
-                restaurantsSection
-                if restaurantsViewModel.isLoading {
-                    ZStack {
-                        Color(.white)
-                            .opacity(0.3)
-                            .ignoresSafeArea()
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    restaurantsSection
+                    if restaurantsViewModel.isLoading {
+                        ZStack {
+                            Color(.white)
+                                .opacity(0.3)
+                                .ignoresSafeArea()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                        }
+                    } else {
+                        restaurants
                     }
-                } else {
-                    restaurants
-                }
-                shopsSection
-                if shopsViewModel.isLoading {
-                    ZStack {
-                        Color(.white)
-                            .opacity(0.3)
-                            .ignoresSafeArea()
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    shopsSection
+                    if shopsViewModel.isLoading {
+                        ZStack {
+                            Color(.white)
+                                .opacity(0.3)
+                                .ignoresSafeArea()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                        }
+                    } else {
+                        shops
                     }
-                } else {
-                    shops
-                }
-                carsSection
-                if carsToRentViewModel.isLoading {
-                    ZStack {
-                        Color(.white)
-                            .opacity(0.3)
-                            .ignoresSafeArea()
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                    carsSection
+                    if carsToRentViewModel.isLoading {
+                        ZStack {
+                            Color(.white)
+                                .opacity(0.3)
+                                .ignoresSafeArea()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
+                        }
+                    } else {
+                        carsToRent
                     }
-                } else {
-                    carsToRent
+                    blankText
                 }
-                blankText
-            }
-            .task {
-                await eventsViewModel.fetchEvents()
-                await restaurantsViewModel.fetchRestaurants()
-                await shopsViewModel.fetchShops()
-                await carsToRentViewModel.fetchCars()
+                .task {
+                    await eventsViewModel.fetchEvents()
+                    await restaurantsViewModel.fetchRestaurants()
+                    await shopsViewModel.fetchShops()
+                    await carsToRentViewModel.fetchCars()
 
+                }
             }
         }
     }
@@ -84,7 +86,9 @@ struct DiscoveryView: View {
 
 struct DiscoveryView_Previews: PreviewProvider {
     static var previews: some View {
-        DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/cars%2Fc1.jpeg?alt=media&token=edcc886f-0f1c-4d80-81ab-e8d7107c7252"), eventsViewModel: .init(eventService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/events%2Fevent1.png?alt=media&token=7dd8f611-0e9b-455f-bb5a-414c5a9d3b24"), restaurantsViewModel: .init(restaurantService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/restaurants%2Fmaui%20coffee.jpg?alt=media&token=95b1b6a2-b4a4-45a3-add1-9b3b12436e43"), shopsViewModel: .init(shopService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/shops%2Fala%20moana.png?alt=media&token=c6149ac7-6e44-4b38-84b0-a27724782e8a"))
+        NavigationView {
+            DiscoveryView(carsToRentViewModel: .init(carsToRentService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/cars%2Fc1.jpeg?alt=media&token=edcc886f-0f1c-4d80-81ab-e8d7107c7252"), eventsViewModel: .init(eventService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/events%2Fevent1.png?alt=media&token=7dd8f611-0e9b-455f-bb5a-414c5a9d3b24"), restaurantsViewModel: .init(restaurantService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/restaurants%2Fmaui%20coffee.jpg?alt=media&token=95b1b6a2-b4a4-45a3-add1-9b3b12436e43"), shopsViewModel: .init(shopService: .init(), photoURL: "https://firebasestorage.googleapis.com/v0/b/travel-app-e37ec.appspot.com/o/shops%2Fala%20moana.png?alt=media&token=c6149ac7-6e44-4b38-84b0-a27724782e8a"))
+        }
     }
 }
 
@@ -129,8 +133,8 @@ private extension DiscoveryView {
                 }
             }
             Spacer()
-            Button {
-                //action
+            NavigationLink {
+                CarsView()
             } label: {
                 Text("See More")
                     .font(.custom("Quicksand-Regular", size: 13))
@@ -145,52 +149,38 @@ private extension DiscoveryView {
             HStack {
                 ForEach(carsToRentViewModel.carsToRent, id: \.id) {
                     randomCar in
-                    VStack {
+                    ZStack {
                         WebImage(url: URL(string: randomCar.image))
                             .resizable()
-                            .cornerRadius(10)
-                            .frame(height: 80)
-                            .frame(maxWidth: .infinity)
                             .scaledToFill()
-                            .padding(.horizontal, 5)
-                        HStack {
-                            Text(randomCar.price)
-                                .font(.custom("Quicksand-Regular", size: 15))
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(15)
+                        VStack {
                             Spacer()
-                        }
-                        HStack {
-                            Text(randomCar.type)
-                                .font(.custom("Quicksand-Bold", size: 15))
-                            Spacer()
-                        }
-                        HStack {
-                            Text(randomCar.adults + ", " + randomCar.bags)
-                                .font(.custom("Quicksand-Regular", size: 15))
-                            Spacer()
-                        }
-                        HStack {
-                            Button {
-                                //actions
-                            } label: {
-                                Text("View Deal")
-                                    .font(.custom("Quicksand-Bold", size: 13))
-                                    .foregroundColor(.white)
-                                    .padding(7)
-                                    .background(.green)
-                                    .cornerRadius(10)
+                            HStack {
+                                Text(randomCar.price)
+                                    .font(.custom("Quicksand-Bold", size: 16))
+                                Spacer()
                             }
-                            Spacer()
+//                            HStack {
+//                                Text(randomCar.type)
+//                                    .font(.custom("Quicksand-SemiBold", size: 14))
+//                                Spacer()
+//                            }
+//                            HStack {
+//                                Text(randomCar.adults + ", " + randomCar.bags)
+//                                    .font(.custom("Quicksand-SemiBold", size: 12))
+//                                Spacer()
+//                            }
                         }
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.leading)
+                        .padding()
                     }
-                    .frame(width: 150, height: 200)
-                    .padding()
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(15)
                 }
             }
-            
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
         .scrollIndicators(SwiftUI.ScrollIndicatorVisibility.hidden)
     }
     
@@ -216,8 +206,8 @@ private extension DiscoveryView {
                 }
             }
             Spacer()
-            Button {
-                //action
+            NavigationLink {
+                EventsView()
             } label: {
                 Text("See More")
                     .font(.custom("Quicksand-Regular", size: 13))
@@ -234,9 +224,9 @@ private extension DiscoveryView {
                     ZStack {
                         WebImage(url: URL(string: randomEvent.image))
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)
-                            .scaledToFill()
                         VStack {
                             Spacer()
                             HStack {
@@ -278,8 +268,8 @@ private extension DiscoveryView {
                 }
             }
             Spacer()
-            Button {
-                //action
+            NavigationLink {
+                RestaurantsView()
             } label: {
                 Text("See More")
                     .font(.custom("Quicksand-Regular", size: 13))
@@ -296,9 +286,9 @@ private extension DiscoveryView {
                     ZStack {
                         WebImage(url: URL(string: randomRestaurant.image))
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)
-                            .scaledToFit()
                         VStack {
                             Spacer()
                             HStack {
@@ -340,8 +330,8 @@ private extension DiscoveryView {
                 }
             }
             Spacer()
-            Button {
-                //action
+            NavigationLink {
+                ShopsView()
             } label: {
                 Text("See More")
                     .font(.custom("Quicksand-Regular", size: 13))
@@ -358,9 +348,9 @@ private extension DiscoveryView {
                     ZStack {
                         WebImage(url: URL(string: randomShop.image))
                             .resizable()
+                            .scaledToFill()
                             .frame(width: 150, height: 200)
                             .cornerRadius(15)
-                            .scaledToFill()
                         VStack {
                             Spacer()
                             HStack {

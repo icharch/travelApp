@@ -15,37 +15,37 @@ struct HomeView: View {
     @State var tabBar = TabBarView()
 
     var body: some View {
-
+        NavigationView {
             ScrollView {
-                    VStack(spacing: 25) {
+                VStack(spacing: 25) {
+                    ZStack {
+                        VStack {
+                            homeImage
+                            Spacer(minLength: -45)
+                            searchText
+                        }
+                    }
+                    circleButtons
+                    if popularLocationsViewModel.isLoading {
                         ZStack {
-                            VStack {
-                                homeImage
-                                Spacer(minLength: -45)
-                                searchText
-                            }
+                            Color(.white)
+                                .opacity(0.3)
+                                .ignoresSafeArea()
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
                         }
-                        circleButtons
-                        if popularLocationsViewModel.isLoading {
-                            ZStack {
-                                Color(.white)
-                                    .opacity(0.3)
-                                    .ignoresSafeArea()
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle(tint: .yellow))
-                            }
-                        } else {
-                            popularLocations
-                        }
-                        recentLocations
-                        blankText
+                    } else {
+                        popularLocations
                     }
-                    .task {
-                        await popularLocationsViewModel.fetchData()
-                    }
+                    recentLocations
+                    blankText
+                }
+                .task {
+                    await popularLocationsViewModel.fetchData()
+                }
             }
             .ignoresSafeArea()
-            
+        }
     }
 }
 
@@ -82,8 +82,8 @@ private extension HomeView {
     
     var circleButtons: some View {
         HStack(spacing: 20) {
-            Button {
-              //  EventsView()
+            NavigationLink {
+                EventsView()
             } label: {
                 VStack {
                     Image(systemName: "calendar.circle.fill")
@@ -94,8 +94,8 @@ private extension HomeView {
                 }
                 .frame(width: 70)
             }
-            Button {
-                //action
+            NavigationLink {
+                RestaurantsView()
             } label: {
                 VStack {
                     Image(systemName: "fork.knife.circle.fill")
@@ -106,8 +106,8 @@ private extension HomeView {
                 }
                 .frame(width: 70)
             }
-            Button {
-                //action
+            NavigationLink {
+                ShopsView()
             } label: {
                 VStack {
                     Image(systemName: "cart.circle.fill")
@@ -118,8 +118,8 @@ private extension HomeView {
                 }
                 .frame(width: 70)
             }
-            Button {
-                //action
+            NavigationLink {
+                CarsView()
             } label: {
                 VStack {
                     Image(systemName: "car.circle.fill")

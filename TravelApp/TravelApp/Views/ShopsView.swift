@@ -1,13 +1,13 @@
 //
-//  EventsView.swift
+//  ShopsView.swift
 //  TravelApp
 //
-//  Created by Irmina Charchuta on 12/05/2023.
+//  Created by Irmina Charchuta on 21/05/2023.
 //
 
 import SwiftUI
 
-struct EventsView: View {
+struct ShopsView: View {
     
     @State var enterSearch = ""
     
@@ -16,9 +16,10 @@ struct EventsView: View {
             VStack(spacing: 30) {
                 searchText
                 VStack(spacing: 15) {
-                    activity
-                    concert
-                    sightseeing
+                    boutique
+                    giftShop
+                    grocery
+                    shoppingMall
                 }
                 blankText
             }
@@ -26,13 +27,13 @@ struct EventsView: View {
     }
 }
 
-struct EventsView_Previews: PreviewProvider {
+struct ShopsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView()
+        ShopsView()
     }
 }
 
-private extension EventsView {
+private extension ShopsView {
     var searchText: some View {
         HStack {
             Image(systemName: "magnifyingglass")
@@ -50,9 +51,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var activity: some View {
+    var boutique: some View {
         ZStack {
-            Image("activity")
+            Image("boutique")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -60,7 +61,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Activity")
+                    Text("Boutique")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -71,9 +72,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var concert: some View {
+    var giftShop: some View {
         ZStack {
-            Image("concerts")
+            Image("gift shop")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -81,7 +82,7 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Concert")
+                    Text("Gift Shop")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
@@ -92,9 +93,9 @@ private extension EventsView {
         .padding(.horizontal)
     }
     
-    var sightseeing: some View {
+    var grocery: some View {
         ZStack {
-            Image("sightseeing")
+            Image("grocery1")
                 .resizable()
                 .scaledToFill()
                 .frame(height: 200)
@@ -102,7 +103,28 @@ private extension EventsView {
             VStack {
                 Spacer()
                 HStack {
-                    Text("Sightseeing")
+                    Text("Grocery")
+                        .font(.custom("Quicksand-Bold", size: 22))
+                        .foregroundColor(.white)
+                        .padding()
+                    Spacer()
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+    
+    var shoppingMall: some View {
+        ZStack {
+            Image("shopping mall")
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .cornerRadius(15)
+            VStack {
+                Spacer()
+                HStack {
+                    Text("Shopping Mall")
                         .font(.custom("Quicksand-Bold", size: 22))
                         .foregroundColor(.white)
                         .padding()
